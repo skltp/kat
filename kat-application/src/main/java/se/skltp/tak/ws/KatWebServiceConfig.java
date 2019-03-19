@@ -18,7 +18,7 @@ import se.skltp.tak.ws.getsupportedservicecontracts.GetSupportedServiceContracts
 @AllArgsConstructor
 @Configuration
 @EnableConfigurationProperties(KatProperties.class)
-public class WebServiceConfig {
+public class KatWebServiceConfig {
 
   @NonNull
   private final Bus bus;
