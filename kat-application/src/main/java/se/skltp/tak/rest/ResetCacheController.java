@@ -9,8 +9,12 @@ import se.skltp.takcache.TakCacheLog;
 @RestController
 public class ResetCacheController {
 
-  @Autowired
   TakCacheService takCacheService;
+
+  @Autowired
+  public ResetCacheController(TakCacheService takCacheService) {
+    this. takCacheService = takCacheService;
+  }
 
   @GetMapping("${kat.resetcache.path}")
   String resetCache(){

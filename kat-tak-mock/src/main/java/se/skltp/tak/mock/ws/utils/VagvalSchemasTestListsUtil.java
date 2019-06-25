@@ -21,38 +21,55 @@ import se.skltp.tak.vagvalsinfo.wsdl.v2.VirtualiseringsInfoType;
 
 public class VagvalSchemasTestListsUtil {
 
-    public static HamtaAllaAnropsBehorigheterResponseType getStaticBehorighet(){
-        HamtaAllaAnropsBehorigheterResponseType hamtaAllaAnropsBehorigheterResponseType = new HamtaAllaAnropsBehorigheterResponseType();
-        hamtaAllaAnropsBehorigheterResponseType.getAnropsBehorighetsInfo().addAll(getStaticBehorighetList());
-        return hamtaAllaAnropsBehorigheterResponseType;
-    }
+  // Utility class
+  private VagvalSchemasTestListsUtil() {
+  }
 
-    public static HamtaAllaVirtualiseringarResponseType getStaticVagval(){
-        HamtaAllaVirtualiseringarResponseType hamtaAllaVirtualiseringarResponseType = new HamtaAllaVirtualiseringarResponseType();
-        hamtaAllaVirtualiseringarResponseType.getVirtualiseringsInfo().addAll(getStaticVagvalList());
-        return hamtaAllaVirtualiseringarResponseType;
-    }
+  public static HamtaAllaAnropsBehorigheterResponseType getStaticBehorighet() {
+    HamtaAllaAnropsBehorigheterResponseType hamtaAllaAnropsBehorigheterResponseType = new HamtaAllaAnropsBehorigheterResponseType();
+    hamtaAllaAnropsBehorigheterResponseType.getAnropsBehorighetsInfo().addAll(getStaticBehorighetList());
+    return hamtaAllaAnropsBehorigheterResponseType;
+  }
 
-    public static List<AnropsBehorighetsInfoType> getStaticBehorighetList(){
-        List<AnropsBehorighetsInfoType> authorization = new ArrayList<AnropsBehorighetsInfoType>();
-        AnropsBehorighetsInfoType authorizationInfo = createAuthorization(TestTakDataDefines.SENDER_1, TestTakDataDefines.NAMNRYMD_1, TestTakDataDefines.RECEIVER_1);
-        authorizationInfo.getFilterInfo().add(createFilterInfo(DOMAIN_1, CATEGORIZATION_1));
-        authorization.add(authorizationInfo);
-        authorization.add(createAuthorization(TestTakDataDefines.SENDER_2, TestTakDataDefines.NAMNRYMD_1, TestTakDataDefines.RECEIVER_1));
-        authorization.add(createAuthorization(TestTakDataDefines.SENDER_1, TestTakDataDefines.NAMNRYMD_2, TestTakDataDefines.RECEIVER_1));
-        authorization.add(createAuthorization(TestTakDataDefines.SENDER_3, TestTakDataDefines.NAMNRYMD_1, TestTakDataDefines.RECEIVER_1, getRelativeDate(TWO_HOURS_AGO), getRelativeDate(AN_HOUR_AGO)));
-        authorization.add(createAuthorization(TestTakDataDefines.SENDER_3, TestTakDataDefines.NAMNRYMD_1, TestTakDataDefines.RECEIVER_1, getRelativeDate(IN_ONE_HOUR), getRelativeDate(IN_TEN_YEARS)));
-        return authorization;
-    }
-    public static List<VirtualiseringsInfoType> getStaticVagvalList() {
-        List<VirtualiseringsInfoType> routing = new ArrayList<>();
-        routing.add(createRouting(TestTakDataDefines.ADDRESS_1, TestTakDataDefines.RIV21, TestTakDataDefines.NAMNRYMD_1, TestTakDataDefines.RECEIVER_1, getRelativeDate(TWO_HOURS_AGO), getRelativeDate(AN_HOUR_AGO)));
-        routing.add(createRouting(TestTakDataDefines.ADDRESS_2, TestTakDataDefines.RIV21, TestTakDataDefines.NAMNRYMD_1, TestTakDataDefines.RECEIVER_1, getRelativeDate(IN_ONE_HOUR), getRelativeDate(IN_TEN_YEARS)));
-        routing.add(createRouting(TestTakDataDefines.ADDRESS_1, TestTakDataDefines.RIV21, TestTakDataDefines.NAMNRYMD_1, TestTakDataDefines.RECEIVER_2));
-        routing.add(createRouting(TestTakDataDefines.ADDRESS_1, TestTakDataDefines.RIV20, TestTakDataDefines.NAMNRYMD_2, TestTakDataDefines.RECEIVER_2));
-        routing.add(createRouting(TestTakDataDefines.ADDRESS_2, TestTakDataDefines.RIV21, TestTakDataDefines.NAMNRYMD_2, TestTakDataDefines.RECEIVER_2));
-        return routing;
-    }
+  public static HamtaAllaVirtualiseringarResponseType getStaticVagval() {
+    HamtaAllaVirtualiseringarResponseType hamtaAllaVirtualiseringarResponseType = new HamtaAllaVirtualiseringarResponseType();
+    hamtaAllaVirtualiseringarResponseType.getVirtualiseringsInfo().addAll(getStaticVagvalList());
+    return hamtaAllaVirtualiseringarResponseType;
+  }
+
+  public static List<AnropsBehorighetsInfoType> getStaticBehorighetList() {
+    List<AnropsBehorighetsInfoType> authorization = new ArrayList<>();
+    AnropsBehorighetsInfoType authorizationInfo = createAuthorization(TestTakDataDefines.SENDER_1, TestTakDataDefines.NAMNRYMD_1,
+        TestTakDataDefines.RECEIVER_1);
+    authorizationInfo.getFilterInfo().add(createFilterInfo(DOMAIN_1, CATEGORIZATION_1));
+    authorization.add(authorizationInfo);
+    authorization
+        .add(createAuthorization(TestTakDataDefines.SENDER_2, TestTakDataDefines.NAMNRYMD_1, TestTakDataDefines.RECEIVER_1));
+    authorization
+        .add(createAuthorization(TestTakDataDefines.SENDER_1, TestTakDataDefines.NAMNRYMD_2, TestTakDataDefines.RECEIVER_1));
+    authorization.add(
+        createAuthorization(TestTakDataDefines.SENDER_3, TestTakDataDefines.NAMNRYMD_1, TestTakDataDefines.RECEIVER_1,
+            getRelativeDate(TWO_HOURS_AGO), getRelativeDate(AN_HOUR_AGO)));
+    authorization.add(
+        createAuthorization(TestTakDataDefines.SENDER_3, TestTakDataDefines.NAMNRYMD_1, TestTakDataDefines.RECEIVER_1,
+            getRelativeDate(IN_ONE_HOUR), getRelativeDate(IN_TEN_YEARS)));
+    return authorization;
+  }
+
+  public static List<VirtualiseringsInfoType> getStaticVagvalList() {
+    List<VirtualiseringsInfoType> routing = new ArrayList<>();
+    routing.add(createRouting(TestTakDataDefines.ADDRESS_1, TestTakDataDefines.RIV21, TestTakDataDefines.NAMNRYMD_1,
+        TestTakDataDefines.RECEIVER_1, getRelativeDate(TWO_HOURS_AGO), getRelativeDate(AN_HOUR_AGO)));
+    routing.add(createRouting(TestTakDataDefines.ADDRESS_2, TestTakDataDefines.RIV21, TestTakDataDefines.NAMNRYMD_1,
+        TestTakDataDefines.RECEIVER_1, getRelativeDate(IN_ONE_HOUR), getRelativeDate(IN_TEN_YEARS)));
+    routing.add(createRouting(TestTakDataDefines.ADDRESS_1, TestTakDataDefines.RIV21, TestTakDataDefines.NAMNRYMD_1,
+        TestTakDataDefines.RECEIVER_2));
+    routing.add(createRouting(TestTakDataDefines.ADDRESS_1, TestTakDataDefines.RIV20, TestTakDataDefines.NAMNRYMD_2,
+        TestTakDataDefines.RECEIVER_2));
+    routing.add(createRouting(TestTakDataDefines.ADDRESS_2, TestTakDataDefines.RIV21, TestTakDataDefines.NAMNRYMD_2,
+        TestTakDataDefines.RECEIVER_2));
+    return routing;
+  }
 
 
 }

@@ -5,7 +5,9 @@ import javax.xml.datatype.DatatypeConfigurationException;
 import javax.xml.datatype.DatatypeConstants;
 import javax.xml.datatype.DatatypeFactory;
 import javax.xml.datatype.XMLGregorianCalendar;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 public class XmlGregorianCalendarUtil {
 	private static DatatypeFactory datatypeFactory = getDatatypeFactory();
 
@@ -17,7 +19,8 @@ public class XmlGregorianCalendarUtil {
 		try {
 			return DatatypeFactory.newInstance();
 		} catch (DatatypeConfigurationException e) {
-			throw new RuntimeException("Could not create DatatypeFactory", e);
+			log.error("Failed create DatatypeFactory", e);
+			return null;
 		}
 	}
 

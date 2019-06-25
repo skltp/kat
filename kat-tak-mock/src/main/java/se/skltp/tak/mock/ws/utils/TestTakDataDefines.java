@@ -1,6 +1,10 @@
 package se.skltp.tak.mock.ws.utils;
 
 public class TestTakDataDefines {
+    // Defines
+    private TestTakDataDefines(){
+    }
+
     public static final String ADDRESS_1 = "address-1";
     public static final String ADDRESS_2 = "address-2";
     public static final String RIV20 = "RIVTABP20";

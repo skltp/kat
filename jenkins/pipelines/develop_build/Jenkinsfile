@@ -20,7 +20,8 @@ pipeline {
                 configFileProvider([configFile(fileId: "${params.CONFIG_FILE_ID}", variable: 'MAVEN_SETTINGS')]) {
                     sh 'pwd'
                     echo 'Compiling, testing and building...'
-                    sh 'mvn --global-settings ${MAVEN_SETTINGS} -P test-coverage clean install -f kat-application/pom.xml'
+                    echo "java home: ${JAVA_HOME}"
+                    sh 'mvn --global-settings ${MAVEN_SETTINGS} -P test-coverage clean install'
                 }
             }     
         }        

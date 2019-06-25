@@ -58,8 +58,6 @@ public class KatWebServiceConfig {
     return endpoint;
   }
 
-
-
   private LoggingFeature loggingFeature() {
     LoggingFeature loggingFeature = new LoggingFeature();
     loggingFeature.setLimit(1024 * 1024); // Size of the log message before it is truncated

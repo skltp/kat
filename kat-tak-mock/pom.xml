@@ -34,6 +34,7 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
     <tak.version>1.5.0</tak.version>
+    <sonar.coverage.exclusions>**/*.*</sonar.coverage.exclusions>
   </properties>
 
   <dependencies>

@@ -47,7 +47,7 @@ public class TakCacheServiceImpl implements TakCacheService {
   @Override
   @Synchronized
   public Set<String> getAllSupportedNamespacesByLogicalAddressAndConsumer(String logicalAddress, String consumerId) {
-    final Set<String> namespaces = new HashSet<String>();
+    final Set<String> namespaces = new HashSet<>();
 
     for (final AnropsBehorighetsInfoType authInfo : geAnropsBehorigheter()) {
       if (authInfo.getReceiverId().equalsIgnoreCase(logicalAddress) && isConsumerIdMatchingOrNull(authInfo, consumerId) && isValidAccordingToTime(authInfo) ) {
