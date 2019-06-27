@@ -19,25 +19,14 @@
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+    <maven.deploy.skip>true</maven.deploy.skip>
   </properties>
   
   <modules>
     <module>kat-tak-mock</module>
     <module>kat-application</module>
   </modules>
-
-  <distributionManagement>
-    <repository>
-      <id>release-nexus</id>
-      <name>Release Nexus</name>
-      <url>${releases-nexus-url}</url>
-    </repository>
-    <snapshotRepository>
-      <id>snapshot-nexus</id>
-      <name>Snapshot Nexus</name>
-      <url>${snapshot-nexus-url}</url>
-    </snapshotRepository>
-  </distributionManagement>
 
   <scm>
     <url>https://github.com/skltp-incubator/kat.git</url>

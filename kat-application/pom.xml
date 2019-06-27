@@ -59,6 +59,19 @@
     <sonar.jacoco.itReportPath>${jacoco.outputDir}/${jacoco.out.it.file}</sonar.jacoco.itReportPath>
   </properties>
 
+  <distributionManagement>
+    <repository>
+      <id>release-nexus</id>
+      <name>Release Nexus</name>
+      <url>${releases-nexus-url}</url>
+    </repository>
+    <snapshotRepository>
+      <id>snapshot-nexus</id>
+      <name>Snapshot Nexus</name>
+      <url>${snapshot-nexus-url}</url>
+    </snapshotRepository>
+  </distributionManagement>
+
   <dependencies>
 
     <dependency>
