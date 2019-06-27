@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>se.skltp.tak</groupId>
   <artifactId>kat-application</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.0.1-RC1</version>
 
   <name>kat-application</name>
 
@@ -23,7 +21,7 @@
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
     <version>2.1.6.RELEASE</version>
-    <relativePath/> <!-- lookup parent from repository -->
+    <relativePath /> <!-- lookup parent from repository -->
   </parent>
 
   <properties>
@@ -258,4 +256,8 @@
     </profile>
   </profiles>
 
+
+  <scm>
+    <tag>kat-0.0.1-RC1</tag>
+  </scm>
 </project>
