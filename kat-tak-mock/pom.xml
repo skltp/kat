@@ -4,7 +4,7 @@
 
   <groupId>se.skltp.tak.mock</groupId>
   <artifactId>kat-tak-mock</artifactId>
-  <version>0.0.2-RC1</version>
+  <version>0.0.3-SNAPSHOT</version>
 
   <name>kat-tak-mock</name>
 
@@ -78,8 +78,4 @@
       </plugin>
     </plugins>
   </build>
-
-  <scm>
-    <tag>v0.0.2-RC1</tag>
-  </scm>
 </project>
