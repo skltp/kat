@@ -35,8 +35,7 @@
 
     <!--<spring.boot-version>2.1.0.RELEASE</spring.boot-version>-->
 
-    <cxf.version>3.2.7</cxf.version>
-    <cxf.version.xjc>3.2.3</cxf.version.xjc>
+    <cxf.version>3.5.2</cxf.version>
 
     <takcache.version>1.0.0</takcache.version>
 
@@ -80,7 +79,18 @@
     </dependency>
       <dependency>
         <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-actuator</artifactId>
+        <artifactId>spring-boot-starter-actuator</artifactId>        
+        <!-- https://www.slf4j.org/codes.html#multiple_bindings -->
+        <exclusions>
+          <exclusion> 
+            <groupId>ch.qos.logback</groupId>
+            <artifactId>logback-classic</artifactId>
+          </exclusion>
+          <exclusion> 
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-to-slf4j</artifactId>
+          </exclusion>
+        </exclusions>
       </dependency>
     <dependency>
       <groupId>org.springframework.boot</groupId>
