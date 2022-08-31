@@ -19,11 +19,13 @@
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
     <maven.deploy.skip>true</maven.deploy.skip>
+    <jacoco.plugin.version>0.8.5</jacoco.plugin.version>
   </properties>
   
   <modules>
     <module>kat-tak-mock</module>
     <module>kat-application</module>
+    <module>report</module>
   </modules>
 
   <scm>
