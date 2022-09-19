@@ -24,6 +24,7 @@ import se.rivta.infrastructure.itintegration.registry.getlogicaladdresseesbyserv
 import se.skltp.tak.mock.ws.utils.TestTakDataDefines;
 import se.skltp.tak.mock.ws.utils.VagvalSchemasTestListsUtil;
 import se.skltp.tak.vagvalsinfo.wsdl.v2.AnropsBehorighetsInfoType;
+import se.skltp.takcache.BehorigheterCache;
 import se.skltp.takcache.TakCache;
 import se.skltp.takcache.TakCacheLog;
 
@@ -45,13 +46,17 @@ public class TakCacheServiceImplTest {
   @Mock
   TakCache takCache;
 
+  @Mock
+  BehorigheterCache behorigheterCache;
+
   TakCacheServiceImpl takCacheService;
 
   @Before
   public void init(){
-    MockitoAnnotations.initMocks(this);
+    MockitoAnnotations.openMocks(this);
     Mockito.when(takCache.refresh()).thenReturn(new TakCacheLog());
-    Mockito.when(takCache.getAnropsBehorighetsInfos()).thenReturn(createAnropsBehorigheter());
+    Mockito.when(takCache.getBehorigeterCache()).thenReturn(behorigheterCache);
+    Mockito.when(behorigheterCache.getAnropsBehorighetsInfos()).thenReturn(createAnropsBehorigheter());
 
     takCacheService = new TakCacheServiceImpl(takCache);
   }
@@ -98,7 +103,7 @@ public class TakCacheServiceImplTest {
 
   @Test
   public void getLogicalAddressesByServiceContractAndConsumerShouldNotGiveDuplicates() {
-    Mockito.when(takCache.getAnropsBehorighetsInfos()).thenReturn(createAnropsBehorigheterWithDuplicates());
+    Mockito.when(takCache.getBehorigeterCache().getAnropsBehorighetsInfos()).thenReturn(createAnropsBehorigheterWithDuplicates());
 
     List<LogicalAddresseeRecordType> addresses = takCacheService.getLogicalAddressesByServiceContractAndConsumer(NAMNRYMD_1, SENDER_1);
     Assert.assertEquals(1, addresses.size());
@@ -110,7 +115,7 @@ public class TakCacheServiceImplTest {
   }
 
   public static List<AnropsBehorighetsInfoType> createAnropsBehorigheterWithDuplicates() {
-    List<AnropsBehorighetsInfoType> authorization = new ArrayList<AnropsBehorighetsInfoType>();
+    List<AnropsBehorighetsInfoType> authorization = new ArrayList<>();
     authorization.add(createAuthorization(TestTakDataDefines.SENDER_1, TestTakDataDefines.NAMNRYMD_1, TestTakDataDefines.RECEIVER_1));
     authorization.add(createAuthorization(TestTakDataDefines.SENDER_1, TestTakDataDefines.NAMNRYMD_1, TestTakDataDefines.RECEIVER_1));
     return authorization;

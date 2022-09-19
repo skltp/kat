@@ -19,7 +19,7 @@ public class ResetCacheControllerTest {
 
   @Before
   public void init() {
-    MockitoAnnotations.initMocks(this);
+    MockitoAnnotations.openMocks(this);
     resetCacheController = new ResetCacheController(takCacheService);
  }
 

@@ -1,13 +1,5 @@
 package se.skltp.tak.services.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import javax.xml.datatype.DatatypeConstants;
-import javax.xml.datatype.XMLGregorianCalendar;
 import lombok.Synchronized;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +12,10 @@ import se.skltp.tak.vagvalsinfo.wsdl.v2.FilterInfoType;
 import se.skltp.takcache.TakCache;
 import se.skltp.takcache.TakCacheLog;
 import se.skltp.takcache.util.XmlGregorianCalendarUtil;
+
+import javax.xml.datatype.DatatypeConstants;
+import javax.xml.datatype.XMLGregorianCalendar;
+import java.util.*;
 
 @Slf4j
 @Service
@@ -79,7 +75,7 @@ public class TakCacheServiceImpl implements TakCacheService {
   }
 
   public List<AnropsBehorighetsInfoType> geAnropsBehorigheter(){
-    return takCache.getAnropsBehorighetsInfos();
+    return takCache.getBehorigeterCache().getAnropsBehorighetsInfos();
   }
 
   private void addFilterToResponse(AnropsBehorighetsInfoType authInfo,

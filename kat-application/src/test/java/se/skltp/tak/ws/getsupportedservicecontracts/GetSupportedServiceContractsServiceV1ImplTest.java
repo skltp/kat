@@ -25,14 +25,14 @@ public class GetSupportedServiceContractsServiceV1ImplTest {
 
   @Before
   public void init(){
-    MockitoAnnotations.initMocks(this);
+    MockitoAnnotations.openMocks(this);
 
     getSupportedServiceContractsServiceV1 = new GetSupportedServiceContractsServiceV1Impl(takCacheService);
   }
 
   @Test
   public void contractNamespacesShouldBeInResult() throws Exception {
-    Set<String> ns = new HashSet<>(Arrays.asList("ns-1", "ns-2"));;
+    Set<String> ns = new HashSet<>(Arrays.asList("ns-1", "ns-2"));
     Mockito.when(takCacheService.getAllSupportedNamespacesByLogicalAddressAndConsumer(anyString(), anyString()))
         .thenReturn(ns);
     GetSupportedServiceContractsType request = createRequest("receiver-1", "sender-1");

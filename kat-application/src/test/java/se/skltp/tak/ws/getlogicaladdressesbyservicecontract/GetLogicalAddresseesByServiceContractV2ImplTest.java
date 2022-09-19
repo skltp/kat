@@ -26,7 +26,7 @@ public class GetLogicalAddresseesByServiceContractV2ImplTest {
 
   @Before
   public void init() {
-    MockitoAnnotations.initMocks(this);
+    MockitoAnnotations.openMocks(this);
 
     getLogicalAddresseesByServiceContractV2 = new GetLogicalAddresseesByServiceContractV2Impl(takCacheService);
   }
