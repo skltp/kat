@@ -4,7 +4,7 @@ ENV APP_NAME=kat \
     BASE_DIR=/opt/kat/ \
     USER=ind-app \
     LOG_DIR=/var/log/ \
-    JARFILE=target/kat-application-1.2.1-SNAPSHOT.jar
+    JARFILE=target/kat-application-*.jar
 
 ADD $JARFILE ${BASE_DIR}/${APP_NAME}.jar
 
