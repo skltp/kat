@@ -4,7 +4,7 @@ metadata:
   name: kat
 spec:
   selector:
-    app: kat
+    app.kubernetes.io/name: kat-application
   type: ClusterIP
   ports:
     - port: 8082

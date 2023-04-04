@@ -8,13 +8,11 @@ spec:
   selector:
     matchLabels:
       app.kubernetes.io/name: kat-application
-      app.kubernetes.io/instance: {{ $.Release.Name }}
   template:
     metadata:
       annotations:
       labels:
         app.kubernetes.io/name: kat-application
-        app.kubernetes.io/instance: {{ $.Release.Name }}
     spec:
       imagePullSecrets:
         - name: regcred
