@@ -26,4 +26,4 @@ HELP.md
 /build/
 
 ### Helm ###
-/template-test/
+helm/template-test/
