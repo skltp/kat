@@ -13,7 +13,8 @@ spec:
     metadata:
       annotations:
       labels:
-        app: kat-application
+        app.kubernetes.io/name: kat-application
+        app.kubernetes.io/instance: {{ $.Release.Name }}
     spec:
       imagePullSecrets:
         - name: regcred
