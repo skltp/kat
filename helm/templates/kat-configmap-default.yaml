@@ -4,8 +4,8 @@ metadata:
   name: kat-configmap-default
 data:
   # Installation basepath
-  BASE_PATH: /opt/{{ .Values.service.name }}
-  server_port: "{{ .Values.service.port }}"
+  BASE_PATH: /opt/kat
+  server_port: "8082"
 
   # Configuration for tomcat accesslog
   server_tomcat_accesslog_buffered: "true"
@@ -39,5 +39,5 @@ data:
   takcache_use_behorighet_cache: "true"
   takcache_use_vagval_cache: "true"
   takcache_persistent_file_name: /tmp/localCache
-  takcache_endpoint_address: "http://tak-services:8080/tak-services/SokVagvalsInfo/v2"
+  takcache_endpoint_address: http://tak-services-svc:8080/tak-services/SokVagvalsInfo/v2
   takcache_header_user_agent: "SKLTP VP/3.1"

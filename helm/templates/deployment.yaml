@@ -2,14 +2,14 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
-  name: {{ .Values.deployment.name }}
+  name: kat
 spec:
   progressDeadlineSeconds: 600
-  replicas: {{ .Values.deployment.replicaCount }}
+  replicas: 1
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: {{ .Values.deployment.name }}
+      app: kat
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -19,36 +19,35 @@ spec:
     metadata:
       annotations:
       labels:
-        app: {{ .Values.deployment.name }}
+        app: kat-application
     spec:
       imagePullSecrets:
         - name: regcred
       containers:
-        - name: {{ .Values.container.image.name }}
-          image: "{{ .Values.container.repository }}{{ .Values.container.image.name }}:{{ .Values.container.image.tag | default $.Chart.AppVersion }}"
-          imagePullPolicy: {{ .Values.container.image.pullPolicy }}
+        - name: kat-application
+          image: "{{ .Values.container.repository }}kat-application:{{ .Chart.AppVersion }}"
           ports:
-            - containerPort: {{ .Values.service.port }}
+            - containerPort: 8082
               protocol: TCP
-              name: {{ .Values.deployment.name }}
+              name: kat
           livenessProbe:
             failureThreshold: 15
             httpGet:
               path: actuator/info
-              port: {{ .Values.service.port }}
+              port: 8082
               scheme: HTTP
             initialDelaySeconds: 10
             periodSeconds: 20
             successThreshold: 1
             timeoutSeconds: 5
           ports:
-            - containerPort: {{ .Values.service.port }}
+            - containerPort: 8082
               protocol: TCP
           readinessProbe:
             failureThreshold: 3
             httpGet:
               path: actuator/info
-              port: {{ .Values.service.port }}
+              port: 8082
               scheme: HTTP
             initialDelaySeconds: 10
             periodSeconds: 10

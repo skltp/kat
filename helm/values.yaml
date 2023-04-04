@@ -1,18 +1,5 @@
-namespace: ntjp
-
-deployment:
-  name: kat
-  replicaCount: 1
-
 container:
-  image:
-    name: kat-application
-    pullPolicy: Always
-
-service:
-  name: kat
-  type: ClusterIP
-  port: 8082
+  repository: docker.drift.inera.se/ntjp/
 
 environment:
   variables:
