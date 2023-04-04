@@ -4,12 +4,10 @@ metadata:
   annotations:
   name: kat
 spec:
-  progressDeadlineSeconds: 600
   replicas: 1
-  revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app.kubernetes.io/name: kat
+      app.kubernetes.io/name: kat-application
       app.kubernetes.io/instance: {{ $.Release.Name }}
   strategy:
     rollingUpdate:
@@ -20,8 +18,9 @@ spec:
     metadata:
       annotations:
       labels:
-        app.kubernetes.io/name: kat
+        app.kubernetes.io/name: kat-application
         app.kubernetes.io/instance: {{ $.Release.Name }}
+        app: kat
     spec:
       imagePullSecrets:
         - name: regcred
