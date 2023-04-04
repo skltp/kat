@@ -9,7 +9,8 @@ spec:
   revisionHistoryLimit: 10
   selector:
     matchLabels:
-      app: kat
+      app.kubernetes.io/name: kat
+      app.kubernetes.io/instance: {{ $.Release.Name }}
   strategy:
     rollingUpdate:
       maxSurge: 25%
@@ -19,7 +20,7 @@ spec:
     metadata:
       annotations:
       labels:
-        app: kat-application
+        app: kat
     spec:
       imagePullSecrets:
         - name: regcred
