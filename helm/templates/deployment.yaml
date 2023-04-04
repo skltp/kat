@@ -22,7 +22,6 @@ spec:
       labels:
         app.kubernetes.io/name: kat
         app.kubernetes.io/instance: {{ $.Release.Name }}
-        app: kat
     spec:
       imagePullSecrets:
         - name: regcred
