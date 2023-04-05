@@ -1,5 +1,7 @@
 container:
   repository: docker.drift.inera.se/ntjp/
+  image:
+    tag: # Override to supply another image tag to run
 
 environment:
   variables:
