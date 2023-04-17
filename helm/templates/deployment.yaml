@@ -18,7 +18,7 @@ spec:
         - name: regcred
       containers:
         - name: kat-application
-          image: "{{ .Values.container.repository }}kat-application:{{ .Values.container.image.tag | default $.Chart.AppVersion }}"
+          image: "{{ .Values.repository }}kat-application:{{ .Values.container.image.tag | default $.Chart.AppVersion }}"
           ports:
             - containerPort: 8082
               protocol: TCP
