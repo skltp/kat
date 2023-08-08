@@ -1,0 +1,43 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kat-configmap-default
+data:
+  # Installation basepath
+  BASE_PATH: /opt/kat
+  server_port: "8082"
+
+  # Configuration for tomcat accesslog
+  server_tomcat_accesslog_buffered: "true"
+  server_tomcat_accesslog_directory: /var/log/kat
+  server_tomcat_accesslog_enabled: "true"
+  server_tomcat_accesslog_file-date-format: ".yyyy-MM-dd"
+  server_tomcat_accesslog_pattern: combined
+  server_tomcat_accesslog_prefix: access_log
+  server_tomcat_accesslog_rename-on-rotate: "true"
+  server_tomcat_accesslog_request-attributes-enabled: "true"
+  server_tomcat_accesslog_rotate: "true"
+  server_tomcat_accesslog_suffix: .log
+  server_tomcat_accesslog_max-days: "90"
+
+  #----------------------  
+  # KAT configuration
+  #----------------------
+
+  # Basepath to webservices
+  cxf_path: /kat/ws
+
+  # KAT - subpaths to webservices
+  kat_getsupportedservicecontracts-v1-path: /GetSupportedServiceContracts/v1
+  kat_getsupportedservicecontracts-v2-path: /GetSupportedServiceContracts/v2
+  kat_getlogicaladdresseesbyservicecontract-v2-path: /GetLogicalAddresseesByServiceContract/v2
+
+  # KAT - Path to REST resetcache service
+  kat_resetcache_path: /kat/resetcache
+
+  # TAK configuration
+  takcache_use_behorighet_cache: "true"
+  takcache_use_vagval_cache: "true"
+  takcache_persistent_file_name: /tmp/localCache
+  takcache_endpoint_address: http://tak-services-svc:8080/tak-services/SokVagvalsInfo/v2
+  takcache_header_user_agent: "SKLTP VP/3.1"

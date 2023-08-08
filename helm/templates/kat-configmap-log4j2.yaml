@@ -1,0 +1,55 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kat-configmap-log4j2
+data:
+  log4j2.xml: |
+    <Configuration status="WARN" monitorInterval="30">
+        <Properties>
+            <Property name="LOG_PATTERN">
+                %d %-5p [%t] %-30c - %m%n
+            </Property>
+            <Property name="log.dir">
+                /var/log/kat
+            </Property>
+        </Properties>
+
+        <Appenders>
+            <Console name="Console" target="SYSTEM_OUT">
+                <PatternLayout pattern="${LOG_PATTERN}"/>
+            </Console>
+
+            <RollingRandomAccessFile name="RollingRandomAccessFile"
+                    fileName="${log.dir}/kat-application.log"
+                    filePattern="${log.dir}/kat-application.log.%i">
+                <PatternLayout>
+                    <Pattern>%d %-5p [%t] %-30c - %m%n</Pattern>
+                </PatternLayout>
+                <Policies>
+                    <!-- KB, MB -->
+                    <SizeBasedTriggeringPolicy size="50 MB"/>
+                </Policies>
+                <DefaultRolloverStrategy fileIndex="min" max="10"/>
+            </RollingRandomAccessFile>
+
+        </Appenders>
+
+        <Loggers>
+            <!-- Application logging -->
+            <AsyncLogger name="se.skltp.tak" level="INFO"/>
+
+            <!-- Payload logging -->
+            <!-- Set to INFO level to log WS payloads  -->
+            <AsyncLogger name="org.apache.cxf.services.GetLogicalAddresseesByServiceContractResponderInterface" level="WARN"/>
+            <AsyncLogger name="org.apache.cxf.services.GetSupportedServiceContractsResponderInterface" level="WARN"/>
+
+            <!--Level INFO will log the init/reset och TAK cache-->
+            <AsyncLogger name="se.skltp.takcache" level="INFO"/>
+
+            <Root level="WARN">
+                <AppenderRef ref="RollingRandomAccessFile"/>   
+            </Root>
+
+        </Loggers>
+    </Configuration>
+    
