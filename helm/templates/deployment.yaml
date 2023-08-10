@@ -19,6 +19,7 @@ spec:
       containers:
         - name: kat-application
           image: "{{ .Values.repository }}kat-application:{{ .Values.container.image.tag | default $.Chart.AppVersion }}"
+          imagePullPolicy: {{ .Values.container.image.pullPolicy }}
           ports:
             - containerPort: 8082
               protocol: TCP
@@ -26,26 +27,23 @@ spec:
           livenessProbe:
             failureThreshold: 15
             httpGet:
-              path: actuator/info
+              path: actuator/health/liveness
               port: 8082
               scheme: HTTP
-            initialDelaySeconds: 10
+            initialDelaySeconds: 60
             periodSeconds: 20
             successThreshold: 1
             timeoutSeconds: 5
-          ports:
-            - containerPort: 8082
-              protocol: TCP
           readinessProbe:
-            failureThreshold: 3
+            failureThreshold: 10
             httpGet:
-              path: actuator/info
+              path: actuator/health/readiness
               port: 8082
               scheme: HTTP
-            initialDelaySeconds: 10
+            initialDelaySeconds: 30
             periodSeconds: 10
             successThreshold: 1
-            timeoutSeconds: 2
+            timeoutSeconds: 5
           resources:
             limits:
               cpu: 8001m
