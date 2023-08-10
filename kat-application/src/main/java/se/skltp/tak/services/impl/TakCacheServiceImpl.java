@@ -22,6 +22,7 @@ import java.util.*;
 public class TakCacheServiceImpl implements TakCacheService {
 
   private TakCache takCache;
+  private TakCacheLog takCacheLog;
 
   @Autowired
   public TakCacheServiceImpl(TakCache takCache) {
@@ -31,7 +32,7 @@ public class TakCacheServiceImpl implements TakCacheService {
   @Override
   @Synchronized
   public TakCacheLog refresh(){
-    TakCacheLog takCacheLog = takCache.refresh();
+    takCacheLog = takCache.refresh();
     log.info("Initial result of takCache.refresh. \nSuccessful: {}\nNumberBehorigheter: {}\nNumberVagval: {}",
         takCacheLog.isRefreshSuccessful(),
         takCacheLog.getNumberBehorigheter(),
@@ -72,6 +73,16 @@ public class TakCacheServiceImpl implements TakCacheService {
     }
 
     return new ArrayList(uniqueLogicalAddresses.values());
+  }
+
+  @Override
+  public boolean isInitalized() {
+    return takCacheLog != null && takCacheLog.getRefreshStatus() != TakCacheLog.RefreshStatus.REFRESH_FAILED;
+  }
+
+  @Override
+  public TakCacheLog getLastRefreshLog() {
+    return takCacheLog;
   }
 
   public List<AnropsBehorighetsInfoType> geAnropsBehorigheter(){
