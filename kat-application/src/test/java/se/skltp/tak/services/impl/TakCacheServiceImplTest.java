@@ -1,14 +1,6 @@
 package se.skltp.tak.services.impl;
 
 import static org.mockito.Mockito.times;
-//import static se.skltp.tak.mock.ws.utils.TestTakDataDefines.*;
-//import static se.skltp.tak.mock.ws.utils.TestTakDataDefines.DOMAIN_1;
-//import static se.skltp.tak.mock.ws.utils.TestTakDataDefines.NAMNRYMD_1;
-//import static se.skltp.tak.mock.ws.utils.TestTakDataDefines.NAMNRYMD_2;
-//import static se.skltp.tak.mock.ws.utils.TestTakDataDefines.RECEIVER_1;
-//import static se.skltp.tak.mock.ws.utils.TestTakDataDefines.SENDER_1;
-//import static se.skltp.tak.mock.ws.utils.TestTakDataDefines.SENDER_2;
-//import static se.skltp.tak.mock.ws.utils.TestTakDataDefines.SENDER_3;
 import static se.skltp.tak.mock.ws.utils.VagvalSchemasTestUtil.createAuthorization;
 
 import java.util.ArrayList;
@@ -54,7 +46,9 @@ public class TakCacheServiceImplTest {
   @Before
   public void init(){
     MockitoAnnotations.openMocks(this);
-    Mockito.when(takCache.refresh()).thenReturn(new TakCacheLog());
+    TakCacheLog log = new TakCacheLog();
+    log.setRefreshStatus(TakCacheLog.RefreshStatus.REFRESH_OK);
+    Mockito.when(takCache.refresh()).thenReturn(log);
     Mockito.when(takCache.getBehorigeterCache()).thenReturn(behorigheterCache);
     Mockito.when(behorigheterCache.getAnropsBehorighetsInfos()).thenReturn(createAnropsBehorigheter());
 
@@ -65,6 +59,30 @@ public class TakCacheServiceImplTest {
   public void refreshMethodShouldRefreshTakCache(){
     takCacheService.refresh();
     Mockito.verify(takCache, times(1)).refresh();
+  }
+
+  @Test
+  public void refreshMethodShouldSetLastRefreshLog(){
+    TakCacheLog refreshLog = takCacheService.refresh();
+    TakCacheLog lastLog = takCacheService.getLastRefreshLog();
+    Assert.assertEquals(refreshLog, lastLog);
+  }
+
+  @Test
+  public void isInitializedShouldBeSetAfterRefreshOk(){
+    Assert.assertFalse(takCacheService.isInitalized());
+    takCacheService.refresh();
+    Assert.assertTrue(takCacheService.isInitalized());
+  }
+
+  @Test
+  public void isInitializedShouldNotBeSetAfterRefreshFailed(){
+    TakCacheLog failedLog = new TakCacheLog();
+    failedLog.setRefreshStatus(TakCacheLog.RefreshStatus.REFRESH_FAILED);
+    Mockito.when(takCache.refresh()).thenReturn(failedLog);
+
+    takCacheService.refresh();
+    Assert.assertFalse(takCacheService.isInitalized());
   }
 
   @Test
