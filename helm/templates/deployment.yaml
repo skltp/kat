@@ -4,7 +4,7 @@ metadata:
   annotations:
   name: kat
 spec:
-  replicas: 1
+  replicas: {{ .Values.deployment.replicaCount }}
   selector:
     matchLabels:
       app.kubernetes.io/name: kat-application
@@ -13,6 +13,7 @@ spec:
       annotations:
       labels:
         app.kubernetes.io/name: kat-application
+        elastic.grok.filter: {{ .Values.deployment.elasticGrokFilter }}
     spec:
       imagePullSecrets:
         - name: regcred
