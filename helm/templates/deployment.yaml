@@ -13,7 +13,7 @@ spec:
       annotations:
       labels:
         app.kubernetes.io/name: kat-application
-        elastic.grok.filter: {{ .Values.deployment.elasticGrokFilter }}
+        elasticGrokFilter: {{ .Values.deployment.elasticGrokFilter }}
     spec:
       imagePullSecrets:
         - name: regcred
