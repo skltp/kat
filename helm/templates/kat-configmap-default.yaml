@@ -44,3 +44,6 @@ data:
   takcache_persistent_file_name: /tmp/localCache
   takcache_endpoint_address: http://tak-services-svc:8080/tak-services/SokVagvalsInfo/v2
   takcache_header_user_agent: "SKLTP VP/3.1"
+
+  # LOG4J configuration
+  LOG4J_APPENDER: ECS

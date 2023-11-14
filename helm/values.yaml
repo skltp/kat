@@ -17,7 +17,6 @@ environment:
   variables:
     _default_config_maps:
       - kat-configmap-default
-      - kat-configmap-log4j2
     config_maps:
       # Override to supply your own maps.
     secrets:
