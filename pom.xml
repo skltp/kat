@@ -20,7 +20,6 @@
 
     <maven.deploy.skip>true</maven.deploy.skip>
     <jacoco.plugin.version>0.8.5</jacoco.plugin.version>
-    <ecs-logging-java.version>1.5.0</ecs-logging-java.version>
   </properties>
   
   <modules>
