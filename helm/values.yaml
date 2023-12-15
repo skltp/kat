@@ -3,6 +3,7 @@ repository: docker.drift.inera.se/ntjp/
 deployment:
   replicaCount: 1
   elasticGrokFilter: camel
+  memory: 512Mi
 
 container:
   image:

@@ -47,10 +47,10 @@ spec:
             timeoutSeconds: 5
           resources:
             limits:
-              memory: 512Mi
+              memory: {{ .Values.depoloyment.memory }}
             requests:
               cpu: 100m
-              memory: 512Mi
+              memory: {{ .Values.depoloyment.memory }}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
           envFrom:
