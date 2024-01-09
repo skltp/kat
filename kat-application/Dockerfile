@@ -14,4 +14,4 @@ RUN mkdir -p ${LOG_DIR} \
 
 WORKDIR ${BASE_DIR}
 USER ${USER}
-CMD ["java", "-XX:MaxRAMPercentage=75", "${JAVA_OPTS}",  "-jar", "${APP_NAME}.jar"]
+CMD java -XX:MaxRAMPercentage=75 ${JAVA_OPTS} -jar ${APP_NAME}.jar
