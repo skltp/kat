@@ -1,4 +1,4 @@
-FROM openjdk:11-oraclelinux8
+FROM eclipse-temurin:11
 
 ENV APP_NAME=kat \
     BASE_DIR=/opt/kat/ \
