@@ -12,6 +12,7 @@ spec:
     metadata:
       annotations:
       labels:
+        app: kat-application
         app.kubernetes.io/name: kat-application
         elasticGrokFilter: {{ .Values.deployment.elasticGrokFilter }}
     spec:
