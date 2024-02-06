@@ -12,6 +12,7 @@ spec:
     metadata:
       annotations:
       labels:
+        app: kat-application
         app.kubernetes.io/name: kat-application
         elasticGrokFilter: {{ .Values.deployment.elasticGrokFilter }}
     spec:
@@ -45,12 +46,8 @@ spec:
             periodSeconds: 10
             successThreshold: 1
             timeoutSeconds: 5
-          resources:
-            limits:
-              memory: {{ .Values.deployment.memory }}
-            requests:
-              cpu: 50m
-              memory: {{ .Values.deployment.memory }}
+          resources: # Block-templated memory and CPU resources.
+            {{- toYaml .Values.deployment.resources | nindent 12 }}
           terminationMessagePath: /dev/termination-log
           terminationMessagePolicy: File
           envFrom:
