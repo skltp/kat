@@ -6,7 +6,7 @@
   <groupId>se.skltp.tak</groupId>
   <artifactId>kat</artifactId>
   <name>kat</name>
-  <version>1.2.3-SNAPSHOT</version>
+  <version>1.2.3-RC1</version>
   <packaging>pom</packaging>
   <description>SKLTP KAT</description>
 
@@ -33,7 +33,7 @@
     <connection>scm:git:https://github.com:443/skltp/kat.git</connection>
     <developerConnection>scm:git:https://github.com:443/skltp/kat.git
     </developerConnection>
-    <tag>HEAD</tag>
+    <tag>v1.2.3-RC1</tag>
   </scm>
 
   </project>
