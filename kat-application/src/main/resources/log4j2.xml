@@ -4,7 +4,7 @@
             %d %-5p [%t] %-30c - %m%n
         </Property>
         <Property name="log.dir">
-            c:/tmp/kat/log
+            ${env:LOG_DIR:-c:/tmp/kat/log}
         </Property>
     </Properties>
 

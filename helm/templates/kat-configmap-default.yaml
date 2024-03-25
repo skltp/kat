@@ -13,7 +13,7 @@ data:
   # Configuration for tomcat accesslog
   server_tomcat_accesslog_buffered: "true"
   server_tomcat_accesslog_directory: /var/log/kat
-  server_tomcat_accesslog_enabled: "true"
+  server_tomcat_accesslog_enabled: "false"
   server_tomcat_accesslog_file-date-format: ".yyyy-MM-dd"
   server_tomcat_accesslog_pattern: combined
   server_tomcat_accesslog_prefix: access_log
