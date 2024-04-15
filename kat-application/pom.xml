@@ -4,7 +4,7 @@
 
   <groupId>se.skltp.tak</groupId>
   <artifactId>kat-application</artifactId>
-  <version>1.2.3-RC2-SNAPSHOT</version>
+  <version>1.2.3</version>
 
   <name>kat-application</name>
 
@@ -237,4 +237,8 @@
       </build>
     </profile>
   </profiles>
+
+  <scm>
+    <tag>v1.2.3</tag>
+  </scm>
 </project>
