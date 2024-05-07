@@ -26,26 +26,9 @@ spec:
             - containerPort: 8082
               protocol: TCP
               name: kat
-          livenessProbe:
-            failureThreshold: 15
-            httpGet:
-              path: actuator/health/liveness
-              port: 8082
-              scheme: HTTP
-            initialDelaySeconds: 60
-            periodSeconds: 20
-            successThreshold: 1
-            timeoutSeconds: 5
-          readinessProbe:
-            failureThreshold: 10
-            httpGet:
-              path: actuator/health/readiness
-              port: 8082
-              scheme: HTTP
-            initialDelaySeconds: 30
-            periodSeconds: 10
-            successThreshold: 1
-            timeoutSeconds: 5
+          # Injection of startup, liveness, and/or readiness probes below.
+          {{- .Values.probes | toYaml | nindent 10 }}
+
           securityContext:
             allowPrivilegeEscalation: false
             capabilities:

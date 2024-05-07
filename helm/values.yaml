@@ -27,3 +27,40 @@ environment:
       # Override to supply your own maps.
     secrets:
       # Override to supply your own secrets.
+
+probes:
+  startupProbe:
+    httpGet:
+      path: actuator/health/readiness
+      port: 8082
+      scheme: HTTP
+    initialDelaySeconds: 60
+    periodSeconds: 15  # 60s initial + 12 failures * 15s period = 60-240 seconds startup before failure and restart.
+    timeoutSeconds: 5
+    successThreshold: 1
+    failureThreshold: 12
+  livenessProbe:
+    httpGet:
+      path: actuator/health/liveness
+      port: 8082
+      scheme: HTTP
+    initialDelaySeconds: 10
+    periodSeconds: 10
+    timeoutSeconds: 5
+    # 3x 10s + 5s timeout allows for up to 45 seconds of non-responsiveness before pod kill-and-restart.
+    #    Earliest kill possible 55 seconds after startup completes.
+    failureThreshold: 4
+    successThreshold: 1
+  readinessProbe:
+    httpGet:
+      path: actuator/health/readiness
+      port: 8082
+      scheme: HTTP
+    # lower initial delay than liveness, but same period, allows traffic to be governed before liveness is tested.
+    initialDelaySeconds: 9
+    periodSeconds: 10
+    timeoutSeconds: 5
+    # 1x 10s + timeout 5s allows for up to 15 seconds on non-response before traffic is cut from pod.
+    #    Earliest cut possible 24 seconds after startup completes.
+    failureThreshold: 1
+    successThreshold: 1
