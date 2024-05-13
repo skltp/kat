@@ -42,6 +42,18 @@
     <jacoco.plugin.version>0.8.5</jacoco.plugin.version>
   </properties>
 
+  <!-- Enable snapshot dependecies (for use with a mirror) -->
+  <repositories>
+    <repository>
+      <id>central</id>
+      <url>https://repo1.maven.org/maven2/</url>
+      <snapshots>
+        <enabled>true</enabled>
+        <updatePolicy>always</updatePolicy>
+      </snapshots>
+    </repository>
+  </repositories>
+
   <distributionManagement>
     <repository>
       <id>release-nexus</id>
