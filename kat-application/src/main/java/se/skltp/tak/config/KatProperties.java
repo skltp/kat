@@ -10,11 +10,6 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class KatProperties {
 
   /**
-   * The service path where GetSupportedServiceContracts V1 should be published.
-   */
-  private String getsupportedservicecontractsV1Path="";
-
-  /**
    * The service path where GetSupportedServiceContracts V2 should be published.
    */
   private String getsupportedservicecontractsV2Path="";
