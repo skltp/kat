@@ -58,9 +58,9 @@
   <dependencies>
 
     <dependency>
-      <groupId>se.skltp.infrastructure.itintegration</groupId>
-      <artifactId>ServiceContracts_infrastructure_itintegration_registry</artifactId>
-      <version>2.0-RC1</version>
+      <groupId>se.rivta.infrastructure.itintegration</groupId>
+      <artifactId>infrastructure_itintegration_registry</artifactId>
+      <version>2.0_RC11</version>
     </dependency>
       <dependency>
         <groupId>org.springframework.boot</groupId>

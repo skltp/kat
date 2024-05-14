@@ -12,7 +12,6 @@ import org.springframework.lang.NonNull;
 import se.skltp.tak.config.KatProperties;
 import se.skltp.tak.services.TakCacheService;
 import se.skltp.tak.ws.getlogicaladdressesbyservicecontract.GetLogicalAddresseesByServiceContractV2Impl;
-import se.skltp.tak.ws.getsupportedservicecontracts.GetSupportedServiceContractsServiceV1Impl;
 import se.skltp.tak.ws.getsupportedservicecontracts.GetSupportedServiceContractsServiceV2Impl;
 
 @AllArgsConstructor
@@ -28,14 +27,6 @@ public class KatWebServiceConfig {
 
   @NonNull
   private final KatProperties katProperties;
-
-
-  @Bean
-  public Endpoint getSupportedServiceContractsV1Endpoint() {
-    return publishEndpoint(
-        new GetSupportedServiceContractsServiceV1Impl(takCacheService),
-        katProperties.getGetsupportedservicecontractsV1Path());
-  }
 
   @Bean
   public Endpoint getSupportedServiceContractsV2Endpoint() {

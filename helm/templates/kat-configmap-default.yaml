@@ -31,7 +31,6 @@ data:
   cxf_path: /kat/ws
 
   # KAT - subpaths to webservices
-  kat_getsupportedservicecontracts-v1-path: /GetSupportedServiceContracts/v1
   kat_getsupportedservicecontracts-v2-path: /GetSupportedServiceContracts/v2
   kat_getlogicaladdresseesbyservicecontract-v2-path: /GetLogicalAddresseesByServiceContract/v2
 
