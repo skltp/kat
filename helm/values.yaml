@@ -18,6 +18,7 @@ container:
 # Environment-specific backwards-compatible service name
 vip:
   name: default-vp-vip
+  port: 8082
 
 environment:
   variables:
