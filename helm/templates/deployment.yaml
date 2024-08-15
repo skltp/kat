@@ -5,6 +5,7 @@ metadata:
   name: kat
 spec:
   replicas: {{ .Values.deployment.replicaCount }}
+  revisionHistoryLimit: 3
   selector:
     matchLabels:
       app.kubernetes.io/name: kat-application
