@@ -16,6 +16,7 @@ spec:
         app: kat-application
         app.kubernetes.io/name: kat-application
         elasticGrokFilter: {{ .Values.deployment.elasticGrokFilter }}
+        monitoring: prometheus
     spec:
       imagePullSecrets:
         - name: regcred
@@ -27,6 +28,9 @@ spec:
             - containerPort: 8082
               protocol: TCP
               name: kat
+            - containerPort: 8089
+              protocol: TCP
+              name: actuators
           # Injection of startup, liveness, and/or readiness probes below.
           {{- .Values.probes | toYaml | nindent 10 }}
 

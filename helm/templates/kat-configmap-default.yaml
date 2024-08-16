@@ -10,6 +10,10 @@ data:
   server_port: "8082"
   server_shutdown: "graceful"
 
+  # Actuator
+  MANAGEMENT_ENDPOINTS_WEB_EXPOSURE_INCLUDE: health,metrics,prometheus
+  MANAGEMENT_SERVER_PORT: "8089"
+
   # Configuration for tomcat accesslog
   server_tomcat_accesslog_buffered: "true"
   server_tomcat_accesslog_directory: /var/log/kat
