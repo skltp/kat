@@ -1,13 +1,5 @@
 package se.skltp.tak.services.impl;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-import javax.xml.datatype.DatatypeConstants;
-import javax.xml.datatype.XMLGregorianCalendar;
 import lombok.Synchronized;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,11 +13,16 @@ import se.skltp.takcache.TakCache;
 import se.skltp.takcache.TakCacheLog;
 import se.skltp.takcache.util.XmlGregorianCalendarUtil;
 
+import javax.xml.datatype.DatatypeConstants;
+import javax.xml.datatype.XMLGregorianCalendar;
+import java.util.*;
+
 @Slf4j
 @Service
 public class TakCacheServiceImpl implements TakCacheService {
 
   private TakCache takCache;
+  private TakCacheLog takCacheLog;
 
   @Autowired
   public TakCacheServiceImpl(TakCache takCache) {
@@ -35,7 +32,7 @@ public class TakCacheServiceImpl implements TakCacheService {
   @Override
   @Synchronized
   public TakCacheLog refresh(){
-    TakCacheLog takCacheLog = takCache.refresh();
+    takCacheLog = takCache.refresh();
     log.info("Initial result of takCache.refresh. \nSuccessful: {}\nNumberBehorigheter: {}\nNumberVagval: {}",
         takCacheLog.isRefreshSuccessful(),
         takCacheLog.getNumberBehorigheter(),
@@ -78,8 +75,18 @@ public class TakCacheServiceImpl implements TakCacheService {
     return new ArrayList(uniqueLogicalAddresses.values());
   }
 
+  @Override
+  public boolean isInitalized() {
+    return takCacheLog != null && takCacheLog.getRefreshStatus() != TakCacheLog.RefreshStatus.REFRESH_FAILED;
+  }
+
+  @Override
+  public TakCacheLog getLastRefreshLog() {
+    return takCacheLog;
+  }
+
   public List<AnropsBehorighetsInfoType> geAnropsBehorigheter(){
-    return takCache.getAnropsBehorighetsInfos();
+    return takCache.getBehorigeterCache().getAnropsBehorighetsInfos();
   }
 
   private void addFilterToResponse(AnropsBehorighetsInfoType authInfo,

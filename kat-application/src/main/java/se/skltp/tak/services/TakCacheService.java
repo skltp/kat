@@ -12,4 +12,8 @@ public interface TakCacheService {
   Set<String> getAllSupportedNamespacesByLogicalAddressAndConsumer(String logicalAddress, String consumerId);
 
   List<LogicalAddresseeRecordType> getLogicalAddressesByServiceContractAndConsumer(String serviceContractNS, String consumerId);
+
+  boolean isInitalized();
+
+  TakCacheLog getLastRefreshLog();
 }

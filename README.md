@@ -1,7 +1,6 @@
 # KAT 
 
-KAT är producent för tjäntekontrakten:  
- - urn:riv:itintegration:registry:GetSupportedServiceContractsResponder:1
+KAT är producent för tjäntekontrakten:
  - urn:riv:infrastructure:itintegration:registry:GetSupportedServiceContractsResponder:2
  - urn:riv:infrastructure:itintegration:registry:GetLogicalAddresseesByServiceContractResponder:2
  
@@ -35,7 +34,6 @@ server.port=8080
 cxf.path=/kat/ws
 
 # KAT - subpaths to webservices
-kat.getsupportedservicecontracts-v1-path=/GetSupportedServiceContracts/v1
 kat.getsupportedservicecontracts-v2-path=/GetSupportedServiceContracts/v2
 kat.getlogicaladdresseesbyservicecontract-v2-path=/GetLogicalAddresseesByServiceContract/v2
 

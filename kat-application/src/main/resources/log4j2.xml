@@ -4,13 +4,17 @@
             %d %-5p [%t] %-30c - %m%n
         </Property>
         <Property name="log.dir">
-            c:/tmp/kat/log
+            ${env:LOG_DIR:-c:/tmp/kat/log}
         </Property>
     </Properties>
 
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="${LOG_PATTERN}"/>
+        </Console>
+
+        <Console name="ECS" target="SYSTEM_OUT">
+            <EcsLayout/>
         </Console>
 
         <RollingRandomAccessFile name="RollingRandomAccessFile"
@@ -41,7 +45,7 @@
         <AsyncLogger name="se.skltp.takcache" level="INFO"/>
      
         <Root level="WARN">
-            <AppenderRef ref="Console"/>
+            <AppenderRef ref="${env:LOG4J_APPENDER:-Console}"/>
         </Root>
 
     </Loggers>

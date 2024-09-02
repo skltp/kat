@@ -1,0 +1,67 @@
+repository: docker.drift.inera.se/ntjp/
+
+deployment:
+  replicaCount: 1
+  elasticGrokFilter: camel
+  resources: #{} # The no-op curly-braces can optionally replace below sub-resources.
+    limits:
+      memory: 512Mi
+    requests:
+      cpu: 50m
+      memory: 512Mi
+
+container:
+  image:
+    tag: # Override to supply another image tag to run
+    pullPolicy: Always
+
+# Environment-specific backwards-compatible service name
+vip:
+  name: default-vp-vip
+  port: 8082
+
+environment:
+  variables:
+    _default_config_maps:
+      - kat-configmap-default
+    config_maps:
+      # Override to supply your own maps.
+    secrets:
+      # Override to supply your own secrets.
+
+probes:
+  startupProbe:
+    httpGet:
+      path: actuator/health/readiness
+      port: actuators
+      scheme: HTTP
+    initialDelaySeconds: 20
+    periodSeconds: 15  # 20s initial + 12 failures * 15s period = 20-230 seconds startup before failure and restart.
+    timeoutSeconds: 5
+    successThreshold: 1
+    failureThreshold: 14
+  livenessProbe:
+    httpGet:
+      path: actuator/health/liveness
+      port: actuators
+      scheme: HTTP
+    initialDelaySeconds: 10
+    periodSeconds: 10
+    timeoutSeconds: 5
+    # 3x 10s + 5s timeout allows for up to 45 seconds of non-responsiveness before pod kill-and-restart.
+    #    Earliest kill possible 55 seconds after startup completes.
+    failureThreshold: 4
+    successThreshold: 1
+  readinessProbe:
+    httpGet:
+      path: actuator/health/readiness
+      port: actuators
+      scheme: HTTP
+    # lower initial delay than liveness, but same period, allows traffic to be governed before liveness is tested.
+    initialDelaySeconds: 9
+    periodSeconds: 10
+    timeoutSeconds: 5
+    # 1x 10s + timeout 5s allows for up to 15 seconds on non-response before traffic is cut from pod.
+    #    Earliest cut possible 24 seconds after startup completes.
+    failureThreshold: 1
+    successThreshold: 1
