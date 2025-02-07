@@ -11,6 +11,7 @@ public class TakServiceContractsApplicationTests {
 
 	@Test
 	public void contextLoads() {
+		// Creates a baseline context for Spring Boot's tests.
+		//  If this fails, Spring Boot is unable to start generally.
 	}
-
 }

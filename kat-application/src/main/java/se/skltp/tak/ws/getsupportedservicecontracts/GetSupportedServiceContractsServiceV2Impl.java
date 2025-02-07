@@ -1,7 +1,7 @@
 package se.skltp.tak.ws.getsupportedservicecontracts;
 
 import java.util.Set;
-import javax.jws.WebService;
+import jakarta.jws.WebService;
 import lombok.AllArgsConstructor;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;

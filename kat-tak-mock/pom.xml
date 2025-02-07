@@ -5,7 +5,7 @@
   <parent>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-parent</artifactId>
-    <version>2.7.18</version>
+    <version>3.3.8</version>
     <relativePath /> <!-- lookup parent from repository -->
   </parent>
 
@@ -25,15 +25,18 @@
   <properties>
     <java.version>17</java.version>
     <maven.compiler.release>17</maven.compiler.release>
-    <spring.boot-version>2.7.18</spring.boot-version>
+    <spring.boot-version>3.3.8</spring.boot-version>
 
-    <log4j2.version>2.17.1</log4j2.version>
+    <log4j2.version>2.24.3</log4j2.version>
 
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-    <tak.version>1.5.0</tak.version>
+    <tak.version>4.0.0</tak.version>
     <sonar.coverage.exclusions>**/*.*</sonar.coverage.exclusions>
+
+    <jaxws.version>4.0.3</jaxws.version>
+    <junit-vintage.version>5.11.4</junit-vintage.version>
 
     <maven.deploy.skip>true</maven.deploy.skip>
   </properties>
@@ -76,13 +79,13 @@
     <dependency>
       <groupId>com.sun.xml.ws</groupId>
       <artifactId>jaxws-rt</artifactId>
-      <version>2.3.2</version>
+      <version>${jaxws.version}</version>
     </dependency>
 
     <dependency>
       <groupId>org.junit.vintage</groupId>
       <artifactId>junit-vintage-engine</artifactId>
-      <version>5.8.2</version>
+      <version>${junit-vintage.version}</version>
       <scope>test</scope>
     </dependency>
 

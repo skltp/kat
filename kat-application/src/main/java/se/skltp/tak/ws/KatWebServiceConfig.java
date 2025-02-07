@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.apache.cxf.Bus;
 import org.apache.cxf.ext.logging.LoggingFeature;
 import org.apache.cxf.jaxws.EndpointImpl;
-import javax.xml.ws.Endpoint;
+import jakarta.xml.ws.Endpoint;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
