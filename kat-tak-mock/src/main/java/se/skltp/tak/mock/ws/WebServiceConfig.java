@@ -1,6 +1,6 @@
 package se.skltp.tak.mock.ws;
 
-import javax.xml.ws.Endpoint;
+import jakarta.xml.ws.Endpoint;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;

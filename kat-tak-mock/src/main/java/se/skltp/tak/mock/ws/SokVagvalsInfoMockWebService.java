@@ -1,7 +1,7 @@
 package se.skltp.tak.mock.ws;
 
 import java.util.List;
-import javax.xml.ws.Endpoint;
+import jakarta.xml.ws.Endpoint;
 import se.skltp.tak.vagvalsinfo.wsdl.v2.AnropsBehorighetsInfoType;
 import se.skltp.tak.vagvalsinfo.wsdl.v2.VirtualiseringsInfoType;
 import se.skltp.tak.mock.ws.utils.VagvalSchemasTestListsUtil;
