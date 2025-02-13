@@ -3,8 +3,8 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <artifactId>kat</artifactId>
         <groupId>se.skltp.tak</groupId>
+        <artifactId>kat</artifactId>
         <version>1.4.0</version>
     </parent>
 
