@@ -5,12 +5,12 @@
   <parent>
     <groupId>se.skltp.tak</groupId>
     <artifactId>kat</artifactId>
-    <version>1.4.0</version>
+    <version>1.4.1</version>
   </parent>
 
   <!--groupId>se.skltp.tak</groupId-->
   <artifactId>kat-application</artifactId>
-  <version>1.4.0</version>
+  <version>1.4.1</version>
   <packaging>jar</packaging>
 
   <name>kat-application</name>
