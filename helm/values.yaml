@@ -20,6 +20,51 @@ vip:
   name: default-vp-vip
   port: 8082
 
+paths:
+  log: /var/log/kat
+
+server:
+  port: "8082"
+  shutdown: graceful
+  tomcat:
+    accesslog:
+      buffered: true
+      directory: "{{ .Values.paths.log }}"
+      enabled: false
+      fileDateFormat: ".yyyy-MM-dd"
+      pattern: combined
+      prefix: access_log
+      renameOnRotate: true
+      requestAttributesEnabled: true
+      rotate: true
+      suffix: .log
+      maxDays: "90"
+
+management:
+  endpointsWebExposureInclude:
+    - health
+    - metrics
+    - prometheus
+  serverPort: "8089"
+
+cxf:
+  path: /kat/ws
+
+kat:
+  getSupportedServiceContractsV2Path: /GetSupportedServiceContracts/v2
+  getLogicalAddresseesByServiceContractV2Path: /GetLogicalAddresseesByServiceContract/v2
+  resetcachePath: /kat/resetcache
+
+takcache:
+  useBehorighetCache: "true"
+  useVagvalCache: "true"
+  persistentFileName: /tmp/localCache
+  endpointAddress: "http://tak-services-svc:8080/tak-services/SokVagvalsInfo/v2"
+  headerUserAgent: "SKLTP VP/3.1"
+
+log4j:
+  appender: ECS
+
 environment:
   variables:
     _default_config_maps:
