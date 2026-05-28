@@ -1,38 +1,39 @@
 package se.skltp.tak.ws.getlogicaladdressesbyservicecontract;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyString;
 
 import java.util.Arrays;
 import java.util.List;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
+import org.mockito.junit.jupiter.MockitoExtension;
 import se.rivta.infrastructure.itintegration.registry.getlogicaladdresseesbyservicecontractresponder.v2.GetLogicalAddresseesByServiceContractResponseType;
 import se.rivta.infrastructure.itintegration.registry.getlogicaladdresseesbyservicecontractresponder.v2.GetLogicalAddresseesByServiceContractType;
 import se.rivta.infrastructure.itintegration.registry.getlogicaladdresseesbyservicecontractresponder.v2.LogicalAddresseeRecordType;
 import se.rivta.infrastructure.itintegration.registry.v2.ServiceContractNamespaceType;
 import se.skltp.tak.services.TakCacheService;
 
-
-public class GetLogicalAddresseesByServiceContractV2ImplTest {
+@ExtendWith(MockitoExtension.class)
+class GetLogicalAddresseesByServiceContractV2ImplTest {
 
   @Mock
   TakCacheService takCacheService;
 
   GetLogicalAddresseesByServiceContractV2Impl getLogicalAddresseesByServiceContractV2;
 
-  @Before
-  public void init() {
-    MockitoAnnotations.openMocks(this);
+  @BeforeEach
+  void init() {
 
     getLogicalAddresseesByServiceContractV2 = new GetLogicalAddresseesByServiceContractV2Impl(takCacheService);
   }
 
   @Test
-  public void resultContainsCorrectLogicalAddresses() {
+  void resultContainsCorrectLogicalAddresses() {
     LogicalAddresseeRecordType recordType1 = createLogicalAddress("receiver-1");
     LogicalAddresseeRecordType recordType2 = createLogicalAddress("receiver-2");
     List<LogicalAddresseeRecordType> mockResult = Arrays.asList(recordType1, recordType2);
@@ -42,21 +43,23 @@ public class GetLogicalAddresseesByServiceContractV2ImplTest {
     GetLogicalAddresseesByServiceContractResponseType response = getLogicalAddresseesByServiceContractV2
         .getLogicalAddresseesByServiceContract("toTest", createRequest("sender-1", "namespace-1"));
 
-    Assert.assertEquals(2, response.getLogicalAddressRecord().size());
-    Assert.assertEquals("receiver-1", response.getLogicalAddressRecord().get(0).getLogicalAddress());
-    Assert.assertEquals("receiver-2", response.getLogicalAddressRecord().get(1).getLogicalAddress());
+    assertEquals(2, response.getLogicalAddressRecord().size());
+    assertEquals("receiver-1", response.getLogicalAddressRecord().get(0).getLogicalAddress());
+    assertEquals("receiver-2", response.getLogicalAddressRecord().get(1).getLogicalAddress());
   }
 
-  @Test(expected = IllegalArgumentException.class)
-  public void noSenderInRequestShouldThrowException() throws Exception {
+  @Test
+  void noSenderInRequestShouldThrowException() {
     GetLogicalAddresseesByServiceContractType request = createRequest(null, "sender-1");
-    getLogicalAddresseesByServiceContractV2.getLogicalAddresseesByServiceContract("toTest", request);
+    assertThrows(IllegalArgumentException.class,
+        () -> getLogicalAddresseesByServiceContractV2.getLogicalAddresseesByServiceContract("toTest", request));
   }
 
-  @Test(expected = IllegalArgumentException.class)
-  public void noContractInRequestShouldThrowException() throws Exception {
+  @Test
+  void noContractInRequestShouldThrowException() {
     GetLogicalAddresseesByServiceContractType request = createRequest("receiver-1", null);
-    getLogicalAddresseesByServiceContractV2.getLogicalAddresseesByServiceContract("toTest", request);
+    assertThrows(IllegalArgumentException.class,
+        () -> getLogicalAddresseesByServiceContractV2.getLogicalAddresseesByServiceContract("toTest", request));
   }
 
   private LogicalAddresseeRecordType createLogicalAddress(String logicalAddress) {

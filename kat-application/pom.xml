@@ -8,9 +8,7 @@
     <version>1.5.0-SNAPSHOT</version>
   </parent>
 
-  <!--groupId>se.skltp.tak</groupId-->
   <artifactId>kat-application</artifactId>
-  <version>1.5.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
   <name>kat-application</name>
@@ -35,17 +33,6 @@
   </distributionManagement>
 
   <properties>
-    <cxf.version>4.1.0</cxf.version>
-    <ecs-logging-java.version>1.6.0</ecs-logging-java.version>
-    <takcache.version>2.2.0</takcache.version>
-    <micrometer.version>1.14.3</micrometer.version>
-    <jakarta.activation.version>2.0.1</jakarta.activation.version>
-    <hibernate-validator.version>8.0.2.Final</hibernate-validator.version>
-
-    <!-- ************************-->
-    <!-- Sonar/Reporting settings -->
-    <!-- ************************-->
-    <jacoco.plugin.version>0.8.12</jacoco.plugin.version>
   </properties>
 
   <dependencies>
@@ -144,16 +131,8 @@
     </dependency>
 
     <dependency>
-      <groupId>org.junit.vintage</groupId>
-      <artifactId>junit-vintage-engine</artifactId>
-      <version>${junit-vintage.version}</version>
-      <scope>test</scope>
-    </dependency>
-
-    <dependency>
       <groupId>org.hibernate.validator</groupId>
       <artifactId>hibernate-validator</artifactId>
-      <version>${hibernate-validator.version}</version>
     </dependency>
 
     <dependency>
@@ -163,8 +142,8 @@
     </dependency>
 
     <dependency>
-      <groupId>com.sun.activation</groupId>
-      <artifactId>jakarta.activation</artifactId>
+      <groupId>jakarta.activation</groupId>
+      <artifactId>jakarta.activation-api</artifactId>
       <version>${jakarta.activation.version}</version>
     </dependency>
 
@@ -191,8 +170,8 @@
         </executions>
       </plugin>
       <plugin>
-        <groupId>pl.project13.maven</groupId>
-        <artifactId>git-commit-id-plugin</artifactId>
+        <groupId>io.github.git-commit-id</groupId>
+        <artifactId>git-commit-id-maven-plugin</artifactId>
       </plugin>
     </plugins>
   </build>
