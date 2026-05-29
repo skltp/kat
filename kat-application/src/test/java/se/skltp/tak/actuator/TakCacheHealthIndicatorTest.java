@@ -27,7 +27,7 @@ class TakCacheHealthIndicatorTest {
 
   @Test
   void testInitializedOk() {
-    Mockito.when(takCacheServiceMock.isInitalized()).thenReturn(true);
+    Mockito.when(takCacheServiceMock.isInitialized()).thenReturn(true);
 
     TakCacheHealthIndicator indicator = new TakCacheHealthIndicator(takCacheServiceMock);
     Health health = indicator.health();
@@ -38,7 +38,7 @@ class TakCacheHealthIndicatorTest {
   void testRefreshFailed() {
     TakCacheLog log = new TakCacheLog();
     log.setRefreshStatus(TakCacheLog.RefreshStatus.REFRESH_FAILED);
-    Mockito.when(takCacheServiceMock.isInitalized()).thenReturn(false);
+    Mockito.when(takCacheServiceMock.isInitialized()).thenReturn(false);
     Mockito.when(takCacheServiceMock.getLastRefreshLog()).thenReturn(log);
 
     TakCacheHealthIndicator indicator = new TakCacheHealthIndicator(takCacheServiceMock);

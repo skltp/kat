@@ -19,7 +19,7 @@ public class TakCacheHealthIndicator implements HealthIndicator {
 
     @Override
     public Health health() {
-        if (!takCacheService.isInitalized()) {
+        if (!takCacheService.isInitialized()) {
             return Health.down().withDetail("refreshStatus", getTakRefreshStatus()).build();
         }
         return Health.up().build();
