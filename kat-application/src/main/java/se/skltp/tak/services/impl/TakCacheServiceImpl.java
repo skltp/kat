@@ -21,7 +21,7 @@ import java.util.*;
 @Service
 public class TakCacheServiceImpl implements TakCacheService {
 
-  private TakCache takCache;
+  private final TakCache takCache;
   private TakCacheLog takCacheLog;
 
   @Autowired
@@ -72,11 +72,11 @@ public class TakCacheServiceImpl implements TakCacheService {
       }
     }
 
-    return new ArrayList(uniqueLogicalAddresses.values());
+    return new ArrayList<>(uniqueLogicalAddresses.values());
   }
 
   @Override
-  public boolean isInitalized() {
+  public boolean isInitialized() {
     return takCacheLog != null && takCacheLog.getRefreshStatus() != TakCacheLog.RefreshStatus.REFRESH_FAILED;
   }
 
@@ -106,10 +106,12 @@ public class TakCacheServiceImpl implements TakCacheService {
 
 
   private boolean isConsumerIdMatchingOrNull(AnropsBehorighetsInfoType authInfo, String consumerHsaId){
+    // Intentionally case-insensitive to align with supported-namespace lookup behavior.
     return consumerHsaId==null || authInfo.getSenderId().equalsIgnoreCase(consumerHsaId);
   }
 
   private boolean matchNamespaceAndConsumer(AnropsBehorighetsInfoType authInfo, String namespace, String consumerId) {
+    // Intentionally case-sensitive to preserve historical and contract-driven matching semantics.
     return authInfo.getSenderId().equals(consumerId) && authInfo.getTjansteKontrakt().equals(namespace);
   }
 
