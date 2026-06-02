@@ -6,3 +6,5 @@ target
 out/
 .idea/
 *.iml
+*kat-application.log
+coverage/
