@@ -1,6 +1,6 @@
 package se.skltp.tak.ws;
 
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.apache.cxf.Bus;
 import org.apache.cxf.ext.logging.LoggingFeature;
 import org.apache.cxf.jaxws.EndpointImpl;
@@ -9,12 +9,13 @@ import org.springframework.boot.context.properties.EnableConfigurationProperties
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.lang.NonNull;
+import org.springframework.beans.factory.annotation.Value;
 import se.skltp.tak.config.KatProperties;
 import se.skltp.tak.services.TakCacheService;
 import se.skltp.tak.ws.getlogicaladdressesbyservicecontract.GetLogicalAddresseesByServiceContractV2Impl;
 import se.skltp.tak.ws.getsupportedservicecontracts.GetSupportedServiceContractsServiceV2Impl;
 
-@AllArgsConstructor
+@RequiredArgsConstructor
 @Configuration
 @EnableConfigurationProperties(KatProperties.class)
 public class KatWebServiceConfig {
@@ -27,6 +28,12 @@ public class KatWebServiceConfig {
 
   @NonNull
   private final KatProperties katProperties;
+
+  @Value("${kat.cxf.logging.limit:8192}")
+  private int cxfLoggingLimit;
+
+  @Value("${kat.cxf.logging.pretty:false}")
+  private boolean cxfPrettyLogging;
 
   @Bean
   public Endpoint getSupportedServiceContractsV2Endpoint() {
@@ -51,8 +58,8 @@ public class KatWebServiceConfig {
 
   private LoggingFeature loggingFeature() {
     LoggingFeature loggingFeature = new LoggingFeature();
-    loggingFeature.setLimit(1024 * 1024); // Size of the log message before it is truncated
-    loggingFeature.setPrettyLogging(true);
+    loggingFeature.setLimit(cxfLoggingLimit);
+    loggingFeature.setPrettyLogging(cxfPrettyLogging);
 
     return loggingFeature;
   }

@@ -4,13 +4,13 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 import se.skltp.tak.services.TakCacheService;
 import se.skltp.takcache.TakCacheLog;
 import se.skltp.takcache.TakCacheLog.RefreshStatus;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 class ResetCacheControllerTest {
@@ -27,13 +27,45 @@ class ResetCacheControllerTest {
 
   @Test
   void takCacheServiceShouldBeCalled() {
-    Mockito.when(takCacheService.refresh())
+    when(takCacheService.refresh())
         .thenReturn(takCacheLogResultData());
 
     String result = resetCacheController.resetCache();
 
-    Mockito.verify(takCacheService, Mockito.times(1)).refresh();
+    verify(takCacheService, times(1)).refresh();
     assertEquals("<br>Test init ok<br>Good luck", result);
+  }
+
+  @Test
+  void htmlInLogRowShouldBeSanitized() {
+    TakCacheLog takCacheLog = new TakCacheLog();
+    takCacheLog.addLog("<script>alert(1)</script>");
+    when(takCacheService.refresh()).thenReturn(takCacheLog);
+
+    String result = resetCacheController.resetCache();
+
+    assertEquals("<br>", result);
+  }
+
+  @Test
+  void nullAndEmptyLogRowsShouldBeHandled() {
+    TakCacheLog takCacheLog = new TakCacheLog();
+    takCacheLog.addLog(null);
+    takCacheLog.addLog("");
+    when(takCacheService.refresh()).thenReturn(takCacheLog);
+
+    String result = resetCacheController.resetCache();
+
+    assertEquals("<br><br>", result);
+  }
+
+  @Test
+  void emptyLogShouldGiveEmptyResult() {
+    when(takCacheService.refresh()).thenReturn(new TakCacheLog());
+
+    String result = resetCacheController.resetCache();
+
+    assertEquals("", result);
   }
 
   private TakCacheLog takCacheLogResultData() {
