@@ -45,13 +45,11 @@
     <dependency>
       <groupId>se.skltp.tak</groupId>
       <artifactId>tak-schemas</artifactId>
-      <version>${tak.version}</version>
     </dependency>
 
     <dependency>
       <groupId>com.sun.xml.ws</groupId>
       <artifactId>jaxws-rt</artifactId>
-      <version>${jaxws.version}</version>
     </dependency>
 
   </dependencies>
