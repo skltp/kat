@@ -28,7 +28,7 @@ public class GetSupportedServiceContractsServiceV2Impl implements GetSupportedSe
     log.info("Request to GetSupportedServiceContractsService V2");
 
     final String requestLogicalAdress = supportedServiceContractsType.getLogicalAdress();
-    if (requestLogicalAdress == null || requestLogicalAdress.trim().equals("")) {
+    if (requestLogicalAdress == null || requestLogicalAdress.trim().isEmpty()) {
       throw new IllegalArgumentException("LogicalAddress must not be empty or null");
     }
 
@@ -44,7 +44,9 @@ public class GetSupportedServiceContractsServiceV2Impl implements GetSupportedSe
       response.getServiceContractNamespace().add(sc);
     }
 
-    log.info("Response returned from GetSupportedServiceContractsService V2. Number service contracts found:"+ns.size());
+    log.info(
+        "Response returned from GetSupportedServiceContractsService V2. Number service contracts found: {}",
+        ns.size());
     return response;
   }
 

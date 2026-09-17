@@ -49,6 +49,7 @@
     <jaxws.version>4.0.4</jaxws.version> <!-- MAR 2026 -->
     <log4j2.version>2.25.4</log4j2.version> <!-- MAR 2026 -->
     <jakarta.activation.version>2.1.4</jakarta.activation.version> <!-- SEP 2024 -->
+    <owasp-html-sanitizer.version>20240325.1</owasp-html-sanitizer.version> <!-- MAR 2024 -->
 
     <!-- Dev and Monitoring -->
     <ecs-logging-java.version>1.7.0</ecs-logging-java.version> <!-- APR 2025. Latest as of APR 2026. -->
@@ -78,6 +79,50 @@
         <version>${spring.boot-version}</version>
         <type>pom</type>
         <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>org.apache.cxf</groupId>
+        <artifactId>cxf-bom</artifactId>
+        <version>${cxf.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+
+      <dependency>
+        <groupId>co.elastic.logging</groupId>
+        <artifactId>log4j2-ecs-layout</artifactId>
+        <version>${ecs-logging-java.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>se.skltp.takcache</groupId>
+        <artifactId>takcache</artifactId>
+        <version>${takcache.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>se.skltp.tak</groupId>
+        <artifactId>tak-schemas</artifactId>
+        <version>${tak.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.sun.xml.ws</groupId>
+        <artifactId>jaxws-rt</artifactId>
+        <version>${jaxws.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>jakarta.activation</groupId>
+        <artifactId>jakarta.activation-api</artifactId>
+        <version>${jakarta.activation.version}</version>
+      </dependency>
+
+      <dependency>
+        <groupId>com.googlecode.owasp-java-html-sanitizer</groupId>
+        <artifactId>owasp-java-html-sanitizer</artifactId>
+        <version>${owasp-html-sanitizer.version}</version>
       </dependency>
     </dependencies>
   </dependencyManagement>

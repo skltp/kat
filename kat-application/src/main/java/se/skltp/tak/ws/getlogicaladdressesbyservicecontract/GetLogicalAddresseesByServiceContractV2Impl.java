@@ -10,6 +10,7 @@ import se.rivta.infrastructure.itintegration.registry.getlogicaladdresseesbyserv
 import se.rivta.infrastructure.itintegration.registry.getlogicaladdresseesbyservicecontractresponder.v2.GetLogicalAddresseesByServiceContractType;
 import se.rivta.infrastructure.itintegration.registry.getlogicaladdresseesbyservicecontractresponder.v2.LogicalAddresseeRecordType;
 import se.skltp.tak.services.TakCacheService;
+import se.skltp.tak.util.LogSanitizer;
 
 @Slf4j
 @AllArgsConstructor
@@ -35,8 +36,10 @@ public class GetLogicalAddresseesByServiceContractV2Impl implements GetLogicalAd
     List<LogicalAddresseeRecordType> logicalAddresses = takCacheService.getLogicalAddressesByServiceContractAndConsumer(namespace, consumerId);
     response.getLogicalAddressRecord().addAll(logicalAddresses);
 
+    String sanitizedConsumerId = LogSanitizer.sanitize(consumerId);
+    String sanitizedNamespace = LogSanitizer.sanitize(namespace);
     log.info("getLogicalAddresseesByServiceContract.v2 found {} logical addresses for consumerHsaId: {}, namespace: {}",
-        logicalAddresses.size(), consumerId, namespace);
+        logicalAddresses.size(), sanitizedConsumerId, sanitizedNamespace);
 
     return response;
   }

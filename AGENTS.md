@@ -77,7 +77,7 @@ The `kat-tak-mock` module is also a `<scope>test</scope>` dependency of `kat-app
 - **CXF SOAP endpoints**: Defined as Spring `@Bean` of type `jakarta.xml.ws.Endpoint` in `KatWebServiceConfig`. Each impl class lives in its own sub-package under `ws/`. Note: this project uses the Jakarta EE namespace throughout (CXF 4.x), not the legacy `javax.*` namespace.
 - **Logging**: Log4j2 with ECS layout for production (`log4j2-ecslogging.xml`), plain for dev (`log4j2.xml`). Switched via `log4j.appender` Helm value. Logback is explicitly excluded — do not add it.
 - **Active profile**: `spring.profiles.active=dev` is set in `application.properties` (used by default for local development); production overrides come from environment variables via ConfigMaps.
-- **Actuator**: Only `health`, `info`, `metrics`, `prometheus` exposed. Management runs on a separate port (8089) in production.
+- **Actuator**: Only `health` and `prometheus` are exposed. Management runs on a separate port (8089) in production. Keep the exposure list minimal — `health` serves the Kubernetes probes and `prometheus` serves metrics scraping; nothing else has a consumer.
 - **Helm deployment**: Environment config is injected via `envFrom` ConfigMaps and Secrets (see `helm/templates/deployment.yaml`). The `app-of-apps/valuefiles/kat-values.yaml` provides environment-specific overrides.
 
 ## Testing
@@ -103,8 +103,6 @@ The `kat-tak-mock` module is also a `<scope>test</scope>` dependency of `kat-app
 | Properties class     | `...tak/config/KatProperties.java`                               |
 | Cache reset REST     | `...tak/rest/ResetCacheController.java`                          |
 | Health indicator     | `...tak/actuator/TakCacheHealthIndicator.java`                   |
-| Info contributor     | `...tak/contributors/developerInfo.java`                         |
 | Startup init         | `...tak/init/ApplicationEventListener.java`                      |
 | Helm values          | `helm/values.yaml`                                               |
 | CI config            | `Jenkins.properties`                                             |
-
